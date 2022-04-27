@@ -43,9 +43,9 @@ const Bebidas = () => {
     } else if (listbebidas == 6) {
         alert(`Disfrute su ${arrayBebidas[5].nombreBebida}`)
     } else if (listbebidas == 7) {
-        alert(`Disfrute su ${arrayBebidas[6].nombreBebida}`)
+        alert(`Disfrute su ${arrayBebidasF[0].nombreBebida}`)
     } else if (listbebidas == 8) {
-        alert(`Disfrute su ${arrayBebidas[7].nombreBebida}`)
+        alert(`Disfrute su ${arrayBebidasF[1].nombreBebida}`)
     } else {
         alert("Ingrese una opción válida")
     }

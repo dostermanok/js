@@ -1,58 +1,63 @@
-const saludo = () => {
-    let nombre;
-
-    do {
-        nombre = prompt("Bienvenido a Tienda de Café, ingrese su nombre:");
-    } while (nombre === "" || !isNaN(nombre));
-
-};
-
 class bebida {
-    constructor(precio, tamaño, nombreBebida){
+    constructor(id, precio, tamaño, nombreBebida) {
+        this.id = id
         this.precio = precio
-        this.tamaño = tamaño
+        this.tamaño = tamaño    
         this.nombreBebida = nombreBebida
     }
 }
 
-const cafe = new bebida(250, "grande", "cafe")
-const te = new bebida(250, "grande", "te")
-const capuccino = new bebida(300, "grande", "capuccino")
-const chocolate = new bebida(350, "grande", "chocolate")
-const latte = new bebida(400, "grande", "latte")
-const café_con_leche = new bebida(300, "grande", "cafe con leche")
-const frapuccino = new bebida(500, "grande", "frapuccino")
-const te_frio = new bebida(300, "grande", "te frio")
+const cafe = new bebida(1, 250, "grande", "cafe")
+const te = new bebida(2, 250, "grande", "te")
+const capuccino = new bebida(3, 300, "grande", "capuccino")
+const chocolate = new bebida(4, 350, "grande", "chocolate")
+const latte = new bebida(5, 400, "grande", "latte")
+const café_con_leche = new bebida(6, 300, "grande", "cafe con leche")
+const frapuccino = new bebida(7, 500, "grande", "frapuccino")
+const te_frio = new bebida(8, 300, "grande", "te frio")
 
-let arrayBebidas = [cafe, te, capuccino, chocolate, latte, café_con_leche, frapuccino, te_frio]
+const productos = [cafe, te, capuccino, chocolate, latte, café_con_leche, frapuccino, te_frio]
 
-let arrayBebidasF = arrayBebidas.slice(6,8)
-
-const Bebidas = () => {
-    let listbebidas = parseInt(prompt(`¿Que bebida caliente desea?\n1) ${arrayBebidas[0].nombreBebida}\n2) ${arrayBebidas[1].nombreBebida}\n3) ${arrayBebidas[2].nombreBebida}\n4) ${arrayBebidas[3].nombreBebida}\n5 ${arrayBebidas[4].nombreBebida}\n6) ${arrayBebidas[5].nombreBebida}\n\n¿Que bebida fria desea?\n7) ${arrayBebidasF[0].nombreBebida}\n8) ${arrayBebidasF[1].nombreBebida} `));
-    if (listbebidas == 1) {
-        alert(`Disfrute su ${arrayBebidas[0].nombreBebida}`)
-    } else if (listbebidas == 2) {
-        alert(`Disfrute su ${arrayBebidas[1].nombreBebida}`)
-    } else if (listbebidas == 3) {
-        alert(`Disfrute su ${arrayBebidas[2].nombreBebida}`)
-    } else if (listbebidas == 4) {
-        alert(`Disfrute su ${arrayBebidas[3].nombreBebida}`)
-    } else if (listbebidas == 5) {
-        alert(`Disfrute su ${arrayBebidas[4].nombreBebida}`)
-    } else if (listbebidas == 6) {
-        alert(`Disfrute su ${arrayBebidas[5].nombreBebida}`)
-    } else if (listbebidas == 7) {
-        alert(`Disfrute su ${arrayBebidasF[0].nombreBebida}`)
-    } else if (listbebidas == 8) {
-        alert(`Disfrute su ${arrayBebidasF[1].nombreBebida}`)
-    } else {
-        alert("Ingrese una opción válida")
+const saludo = () => {
+    alert ("¡Hola! Bienvenidos a nuestra tienda virtual")    
+    let nombre = prompt ("Ingrese su nombre")
+    while (!isNaN(nombre)){
+        nombre = prompt ("Ingrese su nombre")
     }
+    contenedor.innerHTML = `<h1>Hola ${nombre.toUpperCase()}</h1>`
+}
 
-    console.log(listbebidas);
+const contenedor = document.querySelector(".contenedor")
 
-};
 
-saludo();
-Bebidas();
+const bebidas = document.querySelector(".bebidas")
+
+ productos.forEach(bebida => {
+    bebidas.innerHTML += `<div class="card" style="width: 18rem;">
+    <div class="card-body">
+    <h5 class="card-title">${bebida.id}</h5>
+    <p class="card-text">${bebida.precio}</p>
+    <p class="card-text">${bebida.tamaño}</p>
+    <p class="card-text">${bebida.nombreBebida}</p>    
+    <button id="boton${bebida.id}" class=" btn btn-primary"> Agregar al  carrito</button>
+    </div>
+    </div>`
+ })
+
+ productos.forEach(bebida => {
+    (document.getElementById(`boton${bebida.id}`)).addEventListener('click', () => {
+        carrito.push(bebida)
+        console.log(carrito)
+
+    })
+})
+
+let carrito = []
+ 
+saludo()
+
+
+
+
+
+

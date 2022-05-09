@@ -24,10 +24,10 @@ const saludo = () => {
     while (!isNaN(nombre)){
         nombre = prompt ("Ingrese su nombre")
     }
-    contenedor.innerHTML = `<h1>Hola ${nombre.toUpperCase()}</h1>`
+    par.innerHTML = `<h1>Hola ${nombre.toUpperCase()}</h1>`
 }
 
-const contenedor = document.querySelector(".contenedor")
+const par = document.querySelector(".par")
 
 
 const bebidas = document.querySelector(".bebidas")

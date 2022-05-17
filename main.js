@@ -18,14 +18,16 @@ const te_frio = new bebida(8, 300, "grande", "te frio")
 
 const productos = [cafe, te, capuccino, chocolate, latte, café_con_leche, frapuccino, te_frio]
 
-const saludo = () => {
-    alert ("¡Hola! Bienvenidos a nuestra tienda virtual")    
-    let nombre = prompt ("Ingrese su nombre")
-    while (!isNaN(nombre)){
-        nombre = prompt ("Ingrese su nombre")
-    }
-    par.innerHTML = `<h1>Hola ${nombre.toUpperCase()}</h1>`
-}
+const saludar = () => {
+    let saludo = document.querySelector("#saludoIndex");
+    let inputNombre = document.querySelector('#inputNombre')
+    let formSaludo = document.querySelector('#formSaludo')
+    
+    formSaludo.addEventListener('submit', (e) =>{
+        e.preventDefault();
+        saludo.innerHTML = `<h1>HOLA ${inputNombre.value.toUpperCase()} SELECCIONE SU BEBIDA</h1>`
+    });
+};
 
 const par = document.querySelector(".par")
 
@@ -33,7 +35,7 @@ const par = document.querySelector(".par")
 const bebidas = document.querySelector(".bebidas")
 
  productos.forEach(bebida => {
-    bebidas.innerHTML += `<div class="card" style="width: 18rem;">
+    bebidas.innerHTML += `<div class="card text-bg-light mb-3" style="max-width: 50%;">
     <div class="card-body">
     <h5 class="card-title">${bebida.id}</h5>
     <p class="card-text">${bebida.precio}</p>
@@ -54,7 +56,7 @@ const bebidas = document.querySelector(".bebidas")
 
 let carrito = []
  
-saludo()
+saludar()
 
 
 

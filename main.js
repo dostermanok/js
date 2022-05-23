@@ -18,6 +18,7 @@ const te_frio = new bebida(8, 300, "grande", "te frio")
 
 const productos = [cafe, te, capuccino, chocolate, latte, café_con_leche, frapuccino, te_frio]
 
+
 const saludar = () => {
     let saludo = document.querySelector("#saludoIndex");
     let inputNombre = document.querySelector('#inputNombre')
@@ -55,8 +56,17 @@ const bebidas = document.querySelector(".bebidas")
 })
 
 let carrito = []
- 
+
+let ver = document.querySelector("#ver")
+
+ver.addEventListener("click", () => {
+    Swal.fire('SEGUIREMOS AGREGANDO CONTENIDO')
+})
+
 saludar()
+
+
+
 
 
 

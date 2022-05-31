@@ -1,4 +1,4 @@
-class bebida {
+class Bebida {
     constructor(id, precio, tamaño, nombreBebida) {
         this.id = id
         this.precio = precio
@@ -7,14 +7,14 @@ class bebida {
     }
 }
 
-const cafe = new bebida(1, 250, "grande", "cafe")
-const te = new bebida(2, 250, "grande", "te")
-const capuccino = new bebida(3, 300, "grande", "capuccino")
-const chocolate = new bebida(4, 350, "grande", "chocolate")
-const latte = new bebida(5, 400, "grande", "latte")
-const café_con_leche = new bebida(6, 300, "grande", "cafe con leche")
-const frapuccino = new bebida(7, 500, "grande", "frapuccino")
-const te_frio = new bebida(8, 300, "grande", "te frio")
+const cafe = new Bebida(1, 250, "grande", "cafe")
+const te = new Bebida(2, 250, "grande", "te")
+const capuccino = new Bebida(3, 300, "grande", "capuccino")
+const chocolate = new Bebida(4, 350, "grande", "chocolate")
+const latte = new Bebida(5, 400, "grande", "latte")
+const café_con_leche = new Bebida(6, 300, "grande", "cafe con leche")
+const frapuccino = new Bebida(7, 500, "grande", "frapuccino")
+const te_frio = new Bebida(8, 300, "grande", "te frio")
 
 const productos = [cafe, te, capuccino, chocolate, latte, café_con_leche, frapuccino, te_frio]
 
@@ -64,6 +64,21 @@ ver.addEventListener("click", () => {
 })
 
 saludar()
+
+let url = 'https://jsonplaceholder.typicode.com/users'
+fetch(url)
+    .then(response => response.json())
+    .then(data => mostrarData(data))
+    .catch(error => console.log (error))
+
+    const mostrarData = (data) => {
+        console.log (data)
+        let body = ''
+        for (let i = 0; i<data.lenght; i++){
+            body += `<tr><td>${data[i].id}</td><td>${data[i].name}</td><td>${data[i].email}</td></tr>`
+        }
+        document.getElementById('data').innerHTML = body    
+    }
 
 
 

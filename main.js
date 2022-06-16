@@ -2,7 +2,7 @@ class Bebida {
     constructor(id, precio, tamaño, nombreBebida) {
         this.id = id
         this.precio = precio
-        this.tamaño = tamaño    
+        this.tamaño = tamaño
         this.nombreBebida = nombreBebida
     }
 }
@@ -23,8 +23,8 @@ const saludar = () => {
     let saludo = document.querySelector("#saludoIndex");
     let inputNombre = document.querySelector('#inputNombre')
     let formSaludo = document.querySelector('#formSaludo')
-    
-    formSaludo.addEventListener('submit', (e) =>{
+
+    formSaludo.addEventListener('submit', (e) => {
         e.preventDefault();
         saludo.innerHTML = `<h1>HOLA ${inputNombre.value.toUpperCase()} SELECCIONE SU BEBIDA</h1>`
     });
@@ -35,7 +35,7 @@ const par = document.querySelector(".par")
 
 const bebidas = document.querySelector(".bebidas")
 
- productos.forEach(bebida => {
+productos.forEach(bebida => {
     bebidas.innerHTML += `<div class="card text-bg-light mb-3" style="max-width: 50%;">
     <div class="card-body">
     <h5 class="card-title">${bebida.id}</h5>
@@ -45,17 +45,52 @@ const bebidas = document.querySelector(".bebidas")
     <button id="boton${bebida.id}" class=" btn btn-primary"> Agregar al  carrito</button>
     </div>
     </div>`
- })
+})
 
- productos.forEach(bebida => {
+
+let carrito = []
+let carro = document.getElementById('carrito')
+
+productos.forEach(bebida => {
     (document.getElementById(`boton${bebida.id}`)).addEventListener('click', () => {
+        const cardBebidas = document.createElement("div");
+
+
+        cardBebidas.setAttribute("id", "bebida");
+        cardBebidas.classList.add("card");
+        cardBebidas.style.width = "20rem";
+
+        const cardContent = `<div class="card text-bg-light mb-3" style="max-width: 50%;">
+        <div class="card-body">
+        <h5 class="card-title">${bebida.id}</h5>
+        <p class="card-text">${bebida.precio}</p>
+        <p class="card-text">${bebida.tamaño}</p>
+        <p class="card-text">${bebida.nombreBebida}</p>    
+        <button id="boton${bebida.id}" class=" btn btn-primary eliminar">Eliminar</button>
+        </div>
+        </div>`
+
+        cardBebidas.innerHTML = cardContent
+        carro.append(cardBebidas);
+        cardBebidas.querySelector('.eliminar')
+        .addEventListener('click', (e) => eliminar(e) )
+
         carrito.push(bebida)
         console.log(carrito)
 
     })
 })
 
-let carrito = []
+const eliminar = (e) => {
+    let bebidaCard = e.target.closest("#bebida");
+    for (let i = 0; i < carrito.length; i++) {
+        carrito.splice(i, 1);
+        bebidaCard.remove();
+
+    }
+    console.log(carrito);
+    console.log(carrito.length);
+};
 
 let ver = document.querySelector("#ver")
 
@@ -69,18 +104,16 @@ let url = 'https://jsonplaceholder.typicode.com/users'
 fetch(url)
     .then(response => response.json())
     .then(data => mostrarData(data))
-    .catch(error => console.log (error))
+    .catch(error => console.log(error))
 
-    const mostrarData = (data) => {
-        console.log (data)
-        let body = ""
-        for (let i = 0; i<data.length; i++){
-            body += `<tr><td>${data[i].id}</td><td>${data[i].name}</td><td>${data[i].email}</td></tr>`
-        }
-        document.getElementById('data').innerHTML = body    
+const mostrarData = (data) => {
+    console.log(data)
+    let body = ""
+    for (let i = 0; i < data.length; i++) {
+        body += `<tr><td>${data[i].id}</td><td>${data[i].name}</td><td>${data[i].email}</td></tr>`
     }
-
-
+    document.getElementById('data').innerHTML = body
+}
 
 
 
